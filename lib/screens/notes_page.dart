@@ -12,15 +12,7 @@ class NotesPage extends StatefulWidget {
 
 class _NotesPageState extends State<NotesPage> {
   List<Notes> notesList = [];
-
-  // final _lightColors = [
-  //   Colors.amber.shade300,
-  //   Colors.lightGreen.shade300,
-  //   Colors.lightBlue.shade300,
-  //   Colors.orange.shade300,
-  //   Colors.pinkAccent.shade100,
-  //   Colors.tealAccent.shade100
-  // ];
+  List<Notes> searchResults = []; // Added for search functionality
 
   @override
   void initState() {
@@ -33,10 +25,26 @@ class _NotesPageState extends State<NotesPage> {
       final fetchedNotes = await ApiService.fetchNotes();
       setState(() {
         notesList = fetchedNotes;
+        searchResults =
+            fetchedNotes; // Initialize search results with all notes
       });
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  void searchNotes(String query) {
+    final List<Notes> filteredNotes = notesList.where((note) {
+      final titleLower = note.title.toLowerCase();
+      final contentLower = note.content.toLowerCase();
+      final searchLower = query.toLowerCase();
+      return titleLower.contains(searchLower) ||
+          contentLower.contains(searchLower);
+    }).toList();
+
+    setState(() {
+      searchResults = filteredNotes;
+    });
   }
 
   loadBody() {
@@ -45,9 +53,9 @@ class _NotesPageState extends State<NotesPage> {
         padding: EdgeInsets.all(16),
         child: MasonryGridView.count(
           crossAxisCount: 2,
-          itemCount: notesList.length,
+          itemCount: searchResults.length,
           itemBuilder: (context, index) {
-            final note = notesList[index];
+            final note = searchResults[index];
             return GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -58,16 +66,12 @@ class _NotesPageState extends State<NotesPage> {
                             )));
               },
               child: Card(
-                // color: _lightColors[index % _lightColors.length],
                 child: Container(
-                  //make 2 different height
-                  // constraints: BoxConstraints(minHeight: (index % 2 + 1) * 85),
                   padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black45),
                     borderRadius: BorderRadius.circular(10),
                   ),
-
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -122,13 +126,31 @@ class _NotesPageState extends State<NotesPage> {
         title: const Text('NotesV2'),
       ),
       resizeToAvoidBottomInset: false,
-      body: Center(child: loadBody()),
+      body: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            child: TextField(
+              onChanged: searchNotes,
+              decoration: InputDecoration(
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                labelText: 'Cari data',
+                suffixIcon: Icon(Icons.search),
+              ),
+            ),
+          ),
+          Expanded(child: Center(child: loadBody())),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Navigator.push(
-              context,
-              //routing into add page
+          Navigator.push(context,
               MaterialPageRoute(builder: (context) => NotesInsertPage()));
         },
       ),

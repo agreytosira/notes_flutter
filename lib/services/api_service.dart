@@ -9,9 +9,9 @@ class ApiService {
 
   static Future<List<Notes>> fetchNotes() async {
     final response = await http.get(Uri.parse("$notesUrl"));
-    print("Request Endpoint : $notesUrl");
+    // print("Request Endpoint : $notesUrl");
     if (response.statusCode == 200) {
-      print("Response : ${response.body}");
+      // print("Response : ${response.body}");
       final data = json.decode(response.body);
       final notesData = data['data'] as List<dynamic>;
       return notesData.map((notes) => Notes.fromJson(notes)).toList();
