@@ -91,8 +91,8 @@ class _NotesEditPageState extends State<NotesEditPage> {
                 controller: title,
                 decoration: InputDecoration(
                   hintText: "Masukkan Judul",
-                  border: InputBorder.none, // Menghilangkan border
-                  contentPadding: EdgeInsets.zero, // Menghilangkan padding
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
                   filled: true,
                   fillColor: Colors.white,
                 ),
@@ -112,11 +112,12 @@ class _NotesEditPageState extends State<NotesEditPage> {
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
                 decoration: InputDecoration(
-                    hintText: 'Masukkan Konten',
-                    border: InputBorder.none, // Menghilangkan border
-                    contentPadding: EdgeInsets.zero,
-                    fillColor: Colors.white,
-                    filled: true),
+                  hintText: 'Masukkan Konten',
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                  fillColor: Colors.white,
+                  filled: true,
+                ),
                 style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
@@ -140,9 +141,7 @@ class _NotesEditPageState extends State<NotesEditPage> {
                   ),
                 ),
                 onPressed: () {
-                  //validate
                   if (_formKey.currentState!.validate()) {
-                    //send data to database with this method
                     _onUpdate(context);
                   } else {
                     print('tessss');
@@ -171,39 +170,70 @@ class _NotesEditPageState extends State<NotesEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Catatan'),
+        title: const Text('Ubah Catatan'),
         actions: [
           Container(
             padding: const EdgeInsets.only(right: 20),
             child: IconButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      //show dialog to confirm delete data
-                      return AlertDialog(
-                        content: const Text(
-                            'Apakah Anda yakin ingin menghapus data ini ?'),
-                        actions: <Widget>[
-                          ElevatedButton(
-                            child: const Icon(Icons.check_circle),
-                            onPressed: () => _onDelete(context),
-                          ),
-                          ElevatedButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  Colors.grey), // Ubah warna tombol di sini
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      actionsPadding:
+                          EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                      contentPadding: EdgeInsets.all(16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      title: const Text(
+                        'Konfirmasi',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      content: const Text(
+                        'Apakah Anda yakin ingin menghapus data ini ?',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      actions: <Widget>[
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                child: Text('Ya, Hapus'),
+                                onPressed: () => _onDelete(context),
+                              ),
                             ),
-                            child: const Icon(Icons.cancel),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-                icon: const Icon(Icons.delete)),
-          )
+                            SizedBox(
+                              width: 16,
+                            ),
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.grey),
+                                ),
+                                child: Text('Batal'),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(Icons.delete),
+            ),
+          ),
         ],
       ),
       body: loadBody(),
