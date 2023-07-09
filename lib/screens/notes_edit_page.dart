@@ -61,6 +61,14 @@ class _NotesEditPageState extends State<NotesEditPage> {
     try {
       final updateNote = await ApiService.deleteNote(id: widget.id);
       if (updateNote.status == 1) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Data berhasil dihapus',
+            ),
+            duration: const Duration(seconds: 2),
+          ),
+        );
         Navigator.of(context)
             .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
       }
@@ -99,7 +107,6 @@ class _NotesEditPageState extends State<NotesEditPage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 16),
               TextFormField(
                 controller: content,
                 keyboardType: TextInputType.multiline,
