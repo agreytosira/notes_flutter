@@ -33,27 +33,17 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Judul',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 5),
             TextFormField(
               controller: title,
               decoration: InputDecoration(
                   hintText: "Masukkan Judul",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
                   fillColor: Colors.white,
                   filled: true),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontSize: 24,
               ),
               validator: (value) {
                 if (value!.isEmpty) {
@@ -62,30 +52,17 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
                 return null;
               },
             ),
-            const SizedBox(height: 20),
-            const Text(
-              'Konten',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 5),
             TextFormField(
               controller: content,
               keyboardType: TextInputType.multiline,
-              minLines: 5,
-              maxLines: null,
               decoration: InputDecoration(
                   hintText: 'Masukkan Konten',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
                   fillColor: Colors.white,
                   filled: true),
               style: const TextStyle(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w400,
                 fontSize: 16,
               ),
               validator: (value) {
@@ -95,21 +72,32 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
                 return null;
               },
             ),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              child: const Text(
-                "Submit",
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () {
-                //validate
-                if (_formKey.currentState!.validate()) {
-                  //send data to database with this method
-                  _onInsert(context);
-                } else {
-                  print('tessss');
-                }
-              },
+            SizedBox(
+              height: 32,
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: ElevatedButton(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: const Text(
+                      "TAMBAHKAN",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, letterSpacing: 2),
+                    ),
+                  ),
+                  onPressed: () {
+                    //validate
+                    if (_formKey.currentState!.validate()) {
+                      //send data to database with this method
+                      _onInsert(context);
+                    } else {
+                      print('tessss');
+                    }
+                  },
+                ))
+              ],
             )
           ],
         ),
@@ -121,7 +109,7 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notes'),
+        title: const Text('Tambahkan Catatan'),
       ),
       body: loadBody(),
     );

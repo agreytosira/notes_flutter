@@ -4,8 +4,9 @@ import '../services/api_service.dart';
 
 // ignore: must_be_immutable
 class NotesEditPage extends StatefulWidget {
-  NotesEditPage({super.key, required this.id});
-  String id;
+  NotesEditPage({Key? key, required this.id}) : super(key: key);
+  final String id;
+
   @override
   _NotesEditPageState createState() => _NotesEditPageState();
 }
@@ -14,8 +15,8 @@ class _NotesEditPageState extends State<NotesEditPage> {
   final _formKey = GlobalKey<FormState>();
   Notes note = Notes.fromJson({});
 
-  var title = TextEditingController();
-  var content = TextEditingController();
+  TextEditingController title = TextEditingController();
+  TextEditingController content = TextEditingController();
 
   @override
   void initState() {
@@ -43,7 +44,7 @@ class _NotesEditPageState extends State<NotesEditPage> {
       if (updateNote.status == 1) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
+            content: const Text(
               'Data berhasil disimpan',
             ),
             duration: const Duration(seconds: 2),
@@ -63,7 +64,7 @@ class _NotesEditPageState extends State<NotesEditPage> {
       if (updateNote.status == 1) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
+            content: const Text(
               'Data berhasil dihapus',
             ),
             duration: const Duration(seconds: 2),
@@ -77,7 +78,7 @@ class _NotesEditPageState extends State<NotesEditPage> {
     }
   }
 
-  loadBody() {
+  Widget loadBody() {
     if (note.isNotEmpty()) {
       return Form(
         key: _formKey,
@@ -86,10 +87,10 @@ class _NotesEditPageState extends State<NotesEditPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Dibuat tanggal ${note.date}'),
+              Text('Dibuat pada tanggal ${note.date}'),
               TextFormField(
                 controller: title,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: "Masukkan Judul",
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.zero,
@@ -131,15 +132,6 @@ class _NotesEditPageState extends State<NotesEditPage> {
               ),
               const SizedBox(height: 32),
               ElevatedButton(
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  child: const Text(
-                    "SIMPAN",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, letterSpacing: 2),
-                  ),
-                ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _onUpdate(context);
@@ -147,6 +139,15 @@ class _NotesEditPageState extends State<NotesEditPage> {
                     print('tessss');
                   }
                 },
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: const Text(
+                    "SIMPAN",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white, letterSpacing: 2),
+                  ),
+                ),
               )
             ],
           ),
@@ -180,12 +181,6 @@ class _NotesEditPageState extends State<NotesEditPage> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      actionsPadding:
-                          EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                      contentPadding: EdgeInsets.all(16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
                       title: const Text(
                         'Konfirmasi',
                         textAlign: TextAlign.center,
@@ -203,29 +198,18 @@ class _NotesEditPageState extends State<NotesEditPage> {
                         ),
                       ),
                       actions: <Widget>[
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ElevatedButton(
-                                child: Text('Ya, Hapus'),
-                                onPressed: () => _onDelete(context),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () => Navigator.of(context).pop(),
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.grey),
-                                ),
-                                child: Text('Batal'),
-                              ),
-                            ),
-                          ],
-                        )
+                        TextButton(
+                          onPressed: () => _onDelete(context),
+                          child: const Text('Ya, Hapus'),
+                        ),
+                        TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.grey),
+                          ),
+                          child: const Text('Batal'),
+                        ),
                       ],
                     );
                   },
