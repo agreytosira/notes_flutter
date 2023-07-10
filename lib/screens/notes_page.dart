@@ -12,7 +12,12 @@ class NotesPage extends StatefulWidget {
 
 class _NotesPageState extends State<NotesPage> {
   List<Notes> notesList = [];
-  List<Notes> searchResults = []; // Added for search functionality
+  List<Notes> searchResults = []; // Ditambahkan untuk fungsionalitas pencarian
+
+  final TextEditingController searchController =
+      TextEditingController(); // Ditambahkan untuk mengendalikan teks pada TextField
+  FocusNode searchFocusNode =
+      FocusNode(); // Ditambahkan untuk mengendalikan fokus pada TextField
 
   @override
   void initState() {
@@ -26,7 +31,7 @@ class _NotesPageState extends State<NotesPage> {
       setState(() {
         notesList = fetchedNotes;
         searchResults =
-            fetchedNotes; // Initialize search results with all notes
+            fetchedNotes; // Menginisialisasi hasil pencarian dengan semua catatan
       });
     } catch (e) {
       print(e.toString());
@@ -47,61 +52,73 @@ class _NotesPageState extends State<NotesPage> {
     });
   }
 
+  void unfocusSearchField() {
+    if (searchFocusNode.hasFocus) {
+      searchFocusNode.unfocus();
+    }
+  }
+
   loadBody() {
     if (notesList.length > 0) {
-      return Container(
-        padding: EdgeInsets.all(16),
-        child: MasonryGridView.count(
-          crossAxisCount: 2,
-          itemCount: searchResults.length,
-          itemBuilder: (context, index) {
-            final note = searchResults[index];
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
+      return GestureDetector(
+        onTap:
+            unfocusSearchField, // Menghilangkan fokus pada TextField saat pengguna mengetap area selain TextField
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: MasonryGridView.count(
+            crossAxisCount: 2,
+            itemCount: searchResults.length,
+            itemBuilder: (context, index) {
+              final note = searchResults[index];
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => NotesEditPage(
-                              id: note.id,
-                            )));
-              },
-              child: Card(
-                child: Container(
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black45),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        note.date,
-                        style: const TextStyle(color: Colors.black),
+                      builder: (context) => NotesEditPage(
+                        id: note.id,
                       ),
-                      const SizedBox(height: 10),
-                      Text(
-                        note.title,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                    ),
+                  );
+                },
+                child: Card(
+                  child: Container(
+                    padding: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black45),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          note.date,
+                          style: const TextStyle(color: Colors.black),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        note.content,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
+                        const SizedBox(height: 10),
+                        Text(
+                          note.title,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 8),
+                        Text(
+                          note.content,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       );
     } else {
@@ -132,6 +149,8 @@ class _NotesPageState extends State<NotesPage> {
             margin: EdgeInsets.only(top: 16),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: TextField(
+              controller: searchController, // Menggunakan TextEditingController
+              focusNode: searchFocusNode, // Menggunakan FocusNode
               onChanged: searchNotes,
               decoration: InputDecoration(
                 contentPadding:
@@ -150,8 +169,10 @@ class _NotesPageState extends State<NotesPage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => NotesInsertPage()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NotesInsertPage()),
+          );
         },
       ),
     );
