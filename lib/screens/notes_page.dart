@@ -158,7 +158,7 @@ class _NotesPageState extends State<NotesPage> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                labelText: 'Cari data',
+                labelText: 'Cari Catatan',
                 suffixIcon: Icon(Icons.search),
               ),
             ),
