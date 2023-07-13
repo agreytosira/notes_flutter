@@ -143,7 +143,8 @@ class _NotesEditPageState extends State<NotesEditPage> {
                   child: const Text(
                     "SIMPAN",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, letterSpacing: 2),
+                    style: TextStyle(
+                        letterSpacing: 2, fontWeight: FontWeight.w600),
                   ),
                 ),
               )

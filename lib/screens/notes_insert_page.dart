@@ -82,7 +82,8 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
                     child: const Text(
                       "TAMBAHKAN",
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, letterSpacing: 2),
+                      style: TextStyle(
+                          letterSpacing: 2, fontWeight: FontWeight.w600),
                     ),
                   ),
                   onPressed: () {

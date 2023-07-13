@@ -140,7 +140,38 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('NotesV2'),
+        title: const Text(
+          'NotesV2',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          // IconButton yang menampilkan pop up about us saat ditekan
+          IconButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text('About Us'),
+                    content: const Text(
+                        'Aplikasi ini dibuat oleh Kelompok 1 untuk memenuhi tugas mata kuliah Pemrograman Mobile.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('OK'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            icon: const Icon(Icons.info_outline),
+          ),
+        ],
       ),
       resizeToAvoidBottomInset: false,
       body: Column(
