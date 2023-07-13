@@ -39,8 +39,7 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
                   hintText: "Masukkan Judul",
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.zero,
-                  fillColor: Colors.white,
-                  filled: true),
+                  filled: false),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -59,8 +58,7 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
                   hintText: 'Masukkan Konten',
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.zero,
-                  fillColor: Colors.white,
-                  filled: true),
+                  filled: false),
               style: const TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 16,

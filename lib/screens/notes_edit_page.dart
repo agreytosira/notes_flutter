@@ -94,8 +94,7 @@ class _NotesEditPageState extends State<NotesEditPage> {
                   hintText: "Masukkan Judul",
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.zero,
-                  filled: true,
-                  fillColor: Colors.white,
+                  filled: false,
                 ),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
@@ -116,8 +115,7 @@ class _NotesEditPageState extends State<NotesEditPage> {
                   hintText: 'Masukkan Konten',
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.zero,
-                  fillColor: Colors.white,
-                  filled: true,
+                  filled: false,
                 ),
                 style: const TextStyle(
                   fontWeight: FontWeight.w400,
