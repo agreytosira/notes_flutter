@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../models/notes.dart';
 import '../services/api_service.dart';
 import 'notes_edit_page.dart';
@@ -93,12 +95,13 @@ class _NotesPageState extends State<NotesPage> {
                       children: [
                         Text(
                           note.date,
-                          style: const TextStyle(color: Colors.black),
+                          style: GoogleFonts.inter(
+                              color: Colors.black, fontSize: 12),
                         ),
                         const SizedBox(height: 10),
                         Text(
                           note.title,
-                          style: const TextStyle(
+                          style: GoogleFonts.inter(
                             color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -107,7 +110,7 @@ class _NotesPageState extends State<NotesPage> {
                         const SizedBox(height: 8),
                         Text(
                           note.content,
-                          style: const TextStyle(
+                          style: GoogleFonts.inter(
                             color: Colors.black,
                             fontSize: 14,
                           ),
@@ -140,9 +143,9 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'NoteKeeper',
-          style: TextStyle(
+          style: GoogleFonts.inter(
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -155,16 +158,16 @@ class _NotesPageState extends State<NotesPage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: const Text(
+                      title: Text(
                         'Tentang NoteKeeper',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      content: const Text(
+                      content: Text(
                         'NoteKeeper adalah sebuah aplikasi catatan sederhana yang dibuat menggunakan Flutter. Aplikasi ini dapat menambah, mengubah, dan menghapus catatan. NoteKeeper dibuat oleh Kelompok 1 untuk memenuhi tugas mata kuliah Pemrograman Mobile.\n\nAnggota Kelompok 1:\nAgrey Tosira (21112022)\nAisyah Dean Maharani (21112050)\nVuspa Fitri Yusni (21112052)',
-                        style: TextStyle(fontSize: 14, height: 1.5),
+                        style: GoogleFonts.inter(fontSize: 14, height: 1.5),
                       ),
                       actions: [
                         Container(
@@ -204,8 +207,9 @@ class _NotesPageState extends State<NotesPage> {
             margin: EdgeInsets.only(top: 16),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: TextField(
-              controller: searchController, // Menggunakan TextEditingController
-              focusNode: searchFocusNode, // Menggunakan FocusNode
+              style: GoogleFonts.inter(fontSize: 14),
+              controller: searchController,
+              focusNode: searchFocusNode,
               onChanged: searchNotes,
               decoration: InputDecoration(
                 contentPadding:
@@ -214,6 +218,8 @@ class _NotesPageState extends State<NotesPage> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 labelText: 'Cari Catatan',
+                labelStyle:
+                    GoogleFonts.inter(), // Ganti font placeholder dengan Inter
                 suffixIcon: Icon(Icons.search),
               ),
             ),

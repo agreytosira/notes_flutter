@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../services/api_service.dart';
 
 class NotesInsertPage extends StatefulWidget {
@@ -40,7 +41,7 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.zero,
                   filled: false),
-              style: const TextStyle(
+              style: GoogleFonts.inter(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
               ),
@@ -59,7 +60,7 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.zero,
                   filled: false),
-              style: const TextStyle(
+              style: GoogleFonts.inter(
                 fontWeight: FontWeight.w400,
                 fontSize: 16,
               ),
@@ -79,10 +80,10 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
                     child: ElevatedButton(
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: const Text(
+                    child: Text(
                       "TAMBAHKAN",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: GoogleFonts.inter(
                           letterSpacing: 2, fontWeight: FontWeight.w600),
                     ),
                   ),
@@ -108,7 +109,12 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambahkan Catatan'),
+        title: Text(
+          'Tambahkan Catatan',
+          style: GoogleFonts.inter(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
       body: loadBody(),
     );

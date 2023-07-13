@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/notes.dart';
 import '../services/api_service.dart';
 
@@ -87,7 +88,8 @@ class _NotesEditPageState extends State<NotesEditPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Dibuat pada tanggal ${note.date}'),
+              Text('Dibuat pada tanggal ${note.date}',
+                  style: GoogleFonts.inter()),
               TextFormField(
                 controller: title,
                 decoration: const InputDecoration(
@@ -96,7 +98,7 @@ class _NotesEditPageState extends State<NotesEditPage> {
                   contentPadding: EdgeInsets.zero,
                   filled: false,
                 ),
-                style: const TextStyle(
+                style: GoogleFonts.inter(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
                 ),
@@ -117,7 +119,7 @@ class _NotesEditPageState extends State<NotesEditPage> {
                   contentPadding: EdgeInsets.zero,
                   filled: false,
                 ),
-                style: const TextStyle(
+                style: GoogleFonts.inter(
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
                 ),
@@ -140,10 +142,10 @@ class _NotesEditPageState extends State<NotesEditPage> {
                 child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: const Text(
+                  child: Text(
                     "SIMPAN",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: GoogleFonts.inter(
                         letterSpacing: 2, fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -153,10 +155,10 @@ class _NotesEditPageState extends State<NotesEditPage> {
         ),
       );
     } else {
-      return const Center(
+      return Center(
         child: Text(
           "Data Tidak Ditemukan",
-          style: TextStyle(
+          style: GoogleFonts.inter(
             color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -170,7 +172,10 @@ class _NotesEditPageState extends State<NotesEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ubah Catatan'),
+        title: Text(
+          'Ubah Catatan',
+          style: GoogleFonts.inter(fontWeight: FontWeight.bold),
+        ),
         actions: [
           Container(
             padding: const EdgeInsets.only(right: 10),
@@ -180,18 +185,18 @@ class _NotesEditPageState extends State<NotesEditPage> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: const Text(
+                      title: Text(
                         'Konfirmasi',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      content: const Text(
+                      content: Text(
                         'Apakah Anda yakin ingin menghapus data ini ?',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),
@@ -199,7 +204,10 @@ class _NotesEditPageState extends State<NotesEditPage> {
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => _onDelete(context),
-                          child: const Text('Ya, Hapus'),
+                          child: Text(
+                            'Ya, Hapus',
+                            style: GoogleFonts.inter(),
+                          ),
                         ),
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(),
@@ -207,7 +215,10 @@ class _NotesEditPageState extends State<NotesEditPage> {
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.grey),
                           ),
-                          child: const Text('Batal'),
+                          child: Text(
+                            'Batal',
+                            style: GoogleFonts.inter(),
+                          ),
                         ),
                       ],
                     );
