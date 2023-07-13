@@ -173,7 +173,7 @@ class _NotesEditPageState extends State<NotesEditPage> {
         title: const Text('Ubah Catatan'),
         actions: [
           Container(
-            padding: const EdgeInsets.only(right: 20),
+            padding: const EdgeInsets.only(right: 10),
             child: IconButton(
               onPressed: () {
                 showDialog(

@@ -147,29 +147,31 @@ class _NotesPageState extends State<NotesPage> {
           ),
         ),
         actions: [
-          // IconButton yang menampilkan pop up about us saat ditekan
-          IconButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: const Text('About Us'),
-                    content: const Text(
-                        'Aplikasi ini dibuat oleh Kelompok 1 untuk memenuhi tugas mata kuliah Pemrograman Mobile.'),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            icon: const Icon(Icons.info_outline),
+          Container(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('About Us'),
+                      content: const Text(
+                          'Aplikasi ini dibuat oleh Kelompok 1 untuk memenuhi tugas mata kuliah Pemrograman Mobile.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(Icons.info_outline),
+            ),
           ),
         ],
       ),
