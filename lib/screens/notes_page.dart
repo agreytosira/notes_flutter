@@ -141,7 +141,7 @@ class _NotesPageState extends State<NotesPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'NotesV2',
+          'NoteKeeper',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -155,16 +155,38 @@ class _NotesPageState extends State<NotesPage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: const Text('About Us'),
-                      content: const Text(
-                          'Aplikasi ini dibuat oleh Kelompok 1 untuk memenuhi tugas mata kuliah Pemrograman Mobile.'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('OK'),
+                      title: const Text(
+                        'Tentang NoteKeeper',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
+                      ),
+                      content: const Text(
+                        'NoteKeeper adalah sebuah aplikasi catatan sederhana yang dibuat menggunakan Flutter. Aplikasi ini dapat menambah, mengubah, dan menghapus catatan. NoteKeeper dibuat oleh Kelompok 1 untuk memenuhi tugas mata kuliah Pemrograman Mobile.\n\nAnggota Kelompok 1:\nAgrey Tosira (21112022)\nAisyah Dean Maharani (21112050)\nVuspa Fitri Yusni (21112052)',
+                        style: TextStyle(fontSize: 14, height: 1.5),
+                      ),
+                      actions: [
+                        Container(
+                            margin: EdgeInsets.only(
+                                left: 16, bottom: 16, right: 16),
+                            child: ElevatedButton(
+                              child: Container(
+                                width: double.infinity,
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                child: const Text(
+                                  "OK",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      letterSpacing: 2,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            )),
                       ],
                     );
                   },
