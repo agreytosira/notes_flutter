@@ -10,8 +10,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.amber,
-      ),
+          primarySwatch: Colors.amber, scaffoldBackgroundColor: Colors.black87),
       debugShowCheckedModeBanner: false,
       title: '',
       initialRoute: '/',

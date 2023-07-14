@@ -86,51 +86,64 @@ class _NotesEditPageState extends State<NotesEditPage> {
         child: Container(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Dibuat pada tanggal ${note.date}',
-                  style: GoogleFonts.inter()),
-              TextFormField(
-                controller: title,
-                decoration: const InputDecoration(
-                  hintText: "Masukkan Judul",
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.zero,
-                  filled: false,
-                ),
-                style: GoogleFonts.inter(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Judul Wajib Diisi';
-                  }
-                  return null;
-                },
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Dibuat pada tanggal ${note.date}',
+                      style: GoogleFonts.inter(
+                        color: Colors.white70,
+                      )),
+                  TextFormField(
+                    controller: title,
+                    decoration: const InputDecoration(
+                      hintText: "Masukkan Judul",
+                      hintStyle: TextStyle(
+                        color: Colors.white54,
+                      ),
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                      filled: false,
+                    ),
+                    style: GoogleFonts.inter(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: Colors.white),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Judul Wajib Diisi';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: content,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      hintText: 'Masukkan Konten',
+                      hintStyle: TextStyle(
+                        color: Colors.white54,
+                      ),
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                      filled: false,
+                    ),
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                      color: Colors.white70,
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Konten Wajib Diisi';
+                      }
+                      return null;
+                    },
+                  ),
+                ],
               ),
-              TextFormField(
-                controller: content,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: InputDecoration(
-                  hintText: 'Masukkan Konten',
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.zero,
-                  filled: false,
-                ),
-                style: GoogleFonts.inter(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Konten Wajib Diisi';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {

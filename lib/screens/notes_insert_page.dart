@@ -33,46 +33,55 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextFormField(
-              controller: title,
-              decoration: InputDecoration(
-                  hintText: "Masukkan Judul",
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.zero,
-                  filled: false),
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Judul Wajib Diisi';
-                }
-                return null;
-              },
-            ),
-            TextFormField(
-              controller: content,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(
-                  hintText: 'Masukkan Konten',
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.zero,
-                  filled: false),
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.w400,
-                fontSize: 16,
-              ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Konten Wajib Diisi';
-                }
-                return null;
-              },
-            ),
-            SizedBox(
-              height: 32,
+            Column(
+              children: [
+                TextFormField(
+                  controller: title,
+                  decoration: InputDecoration(
+                      hintText: "Masukkan Judul",
+                      hintStyle: TextStyle(
+                        color: Colors.white54,
+                      ),
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                      filled: false),
+                  style: GoogleFonts.inter(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Judul Wajib Diisi';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: content,
+                  keyboardType: TextInputType.multiline,
+                  decoration: InputDecoration(
+                      hintText: 'Masukkan Konten',
+                      hintStyle: TextStyle(
+                        color: Colors.white54,
+                      ),
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                      filled: false),
+                  style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                      color: Colors.white70),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Konten Wajib Diisi';
+                    }
+                    return null;
+                  },
+                ),
+              ],
             ),
             Row(
               children: [

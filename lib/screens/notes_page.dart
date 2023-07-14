@@ -80,11 +80,12 @@ class _NotesPageState extends State<NotesPage> {
                   );
                 },
                 child: Card(
+                  color: Colors.transparent,
                   child: Container(
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black45),
-                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.white70),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,13 +93,13 @@ class _NotesPageState extends State<NotesPage> {
                         Text(
                           note.date,
                           style: GoogleFonts.inter(
-                              color: Colors.black, fontSize: 12),
+                              color: Colors.white70, fontSize: 12),
                         ),
                         const SizedBox(height: 10),
                         Text(
                           note.title,
                           style: GoogleFonts.inter(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -107,7 +108,7 @@ class _NotesPageState extends State<NotesPage> {
                         Text(
                           note.content,
                           style: GoogleFonts.inter(
-                            color: Colors.black,
+                            color: Colors.white70,
                             fontSize: 14,
                           ),
                         ),
@@ -126,7 +127,7 @@ class _NotesPageState extends State<NotesPage> {
         child: Text(
           "Data Tidak Tersedia",
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -203,7 +204,7 @@ class _NotesPageState extends State<NotesPage> {
             margin: EdgeInsets.only(top: 16),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: TextField(
-              style: GoogleFonts.inter(fontSize: 14),
+              style: GoogleFonts.inter(fontSize: 14, color: Colors.white),
               controller: searchController,
               focusNode: searchFocusNode,
               onChanged: searchNotes,
@@ -212,10 +213,22 @@ class _NotesPageState extends State<NotesPage> {
                     EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                      color: Colors.white70), // Atur warna border menjadi putih
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                      color: Colors
+                          .white70), // Atur warna border sebelum fokus menjadi putih
                 ),
                 labelText: 'Cari Catatan',
-                labelStyle: GoogleFonts.inter(),
-                suffixIcon: Icon(Icons.search),
+                labelStyle: GoogleFonts.inter(color: Colors.white),
+                suffixIcon: Icon(
+                  Icons.search,
+                  color:
+                      Colors.white, // Atur warna ikon pada suffix menjadi putih
+                ),
               ),
             ),
           ),
