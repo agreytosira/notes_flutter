@@ -90,7 +90,6 @@ class _NotesInsertPageState extends State<NotesInsertPage> {
                   onPressed: () {
                     //validate
                     if (_formKey.currentState!.validate()) {
-                      //send data to database with this method
                       _onInsert(context);
                     } else {
                       print('tessss');

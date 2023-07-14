@@ -14,12 +14,10 @@ class NotesPage extends StatefulWidget {
 
 class _NotesPageState extends State<NotesPage> {
   List<Notes> notesList = [];
-  List<Notes> searchResults = []; // Ditambahkan untuk fungsionalitas pencarian
+  List<Notes> searchResults = [];
 
-  final TextEditingController searchController =
-      TextEditingController(); // Ditambahkan untuk mengendalikan teks pada TextField
-  FocusNode searchFocusNode =
-      FocusNode(); // Ditambahkan untuk mengendalikan fokus pada TextField
+  final TextEditingController searchController = TextEditingController();
+  FocusNode searchFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -32,8 +30,7 @@ class _NotesPageState extends State<NotesPage> {
       final fetchedNotes = await ApiService.fetchNotes();
       setState(() {
         notesList = fetchedNotes;
-        searchResults =
-            fetchedNotes; // Menginisialisasi hasil pencarian dengan semua catatan
+        searchResults = fetchedNotes;
       });
     } catch (e) {
       print(e.toString());
@@ -63,8 +60,7 @@ class _NotesPageState extends State<NotesPage> {
   loadBody() {
     if (notesList.length > 0) {
       return GestureDetector(
-        onTap:
-            unfocusSearchField, // Menghilangkan fokus pada TextField saat pengguna mengetap area selain TextField
+        onTap: unfocusSearchField,
         child: Container(
           padding: EdgeInsets.all(16),
           child: MasonryGridView.count(
@@ -218,8 +214,7 @@ class _NotesPageState extends State<NotesPage> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 labelText: 'Cari Catatan',
-                labelStyle:
-                    GoogleFonts.inter(), // Ganti font placeholder dengan Inter
+                labelStyle: GoogleFonts.inter(),
                 suffixIcon: Icon(Icons.search),
               ),
             ),
