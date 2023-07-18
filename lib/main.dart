@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_flutter/screens/notes_page.dart';
+import './screens/notes_page.dart';
 
 void main() => runApp(const App());
 

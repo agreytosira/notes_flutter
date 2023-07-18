@@ -1,8 +1,16 @@
-# NoteKeeper - Aplikasi Catatan berbasis Flutter
+# notekeeper
 
-NoteKeeper adalah sebuah aplikasi catatan sederhana yang dibuat menggunakan Flutter. Aplikasi ini dapat menambah, mengubah, dan menghapus catatan. NoteKeeper dibuat oleh Kelompok 1 untuk memenuhi tugas mata kuliah Mobile Computing.
+A new Flutter project.
 
-Anggota Kelompok 1: <br>
-Agrey Tosira (21112022) <br>
-Aisyah Dena Maharani (21112050) <br>
-Vuspa Fitri Yusni (21112052) <br>
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
