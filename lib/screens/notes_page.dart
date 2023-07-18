@@ -163,7 +163,7 @@ class _NotesPageState extends State<NotesPage> {
                         ),
                       ),
                       content: Text(
-                        'NoteKeeper adalah sebuah aplikasi catatan sederhana yang dibuat menggunakan Flutter. Aplikasi ini dapat menambah, mengubah, dan menghapus catatan. NoteKeeper dibuat oleh Kelompok 1 untuk memenuhi tugas mata kuliah Pemrograman Mobile.\n\nAnggota Kelompok 1:\nAgrey Tosira (21112022)\nAisyah Dean Maharani (21112050)\nVuspa Fitri Yusni (21112052)',
+                        'NoteKeeper adalah sebuah aplikasi catatan sederhana yang dibuat menggunakan Flutter. Aplikasi ini dapat menambah, mengubah, dan menghapus catatan. NoteKeeper dibuat oleh Kelompok 1 untuk memenuhi tugas mata kuliah Mobile Computing.\n\nAnggota Kelompok 1:\nAgrey Tosira (21112022)\nAisyah Dena Maharani (21112050)\nVuspa Fitri Yusni (21112052)',
                         style: GoogleFonts.inter(fontSize: 14, height: 1.5),
                       ),
                       actions: [
