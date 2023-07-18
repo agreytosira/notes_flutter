@@ -35,6 +35,7 @@ migrate_working_dir/
 /android/
 /windows/
 /macos/
+/linux/
 
 # Symbolication related
 app.*.symbols
